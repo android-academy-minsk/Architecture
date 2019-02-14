@@ -1,9 +1,9 @@
 package com.cleanarchitecturesample.ui.view
 
-import com.cleanarchitecturesample.models.Location
+import com.cleanarchitecturesample.models.LocationModel
 
 interface MainView {
 
-    fun showLocations(locations: List<Location>)
+    fun showLocations(locations: List<LocationModel>)
 
 }

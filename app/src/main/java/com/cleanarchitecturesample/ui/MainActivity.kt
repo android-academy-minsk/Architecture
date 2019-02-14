@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import com.cleanarchitecturesample.R
 import com.cleanarchitecturesample.dependencyinjection.FabricObjects
 import com.cleanarchitecturesample.dependencyinjection.FabricObjectsImpl
-import com.cleanarchitecturesample.mappers.PresentationMapper
 import com.cleanarchitecturesample.mappers.PresentationMapperImpl
-import com.cleanarchitecturesample.models.Location
+import com.cleanarchitecturesample.models.LocationModel
 import com.cleanarchitecturesample.ui.presenter.MainPresenter
 import com.cleanarchitecturesample.ui.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private val presenter: MainPresenter
     private val locationsAdapter = LocationsAdapter()
     private val fabric: FabricObjects = FabricObjectsImpl()
-    private val mapper: PresentationMapper<com.domain.featurelocation.models.Location,Location> = PresentationMapperImpl()
+    private val mapper = PresentationMapperImpl()
 
 
     init {
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onDestroy()
     }
 
-    override fun showLocations(locations: List<Location>) {
+    override fun showLocations(locations: List<LocationModel>) {
         locationsAdapter.items = locations
     }
 }

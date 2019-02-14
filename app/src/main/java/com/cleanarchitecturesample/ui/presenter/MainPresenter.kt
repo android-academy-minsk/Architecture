@@ -1,29 +1,51 @@
 package com.cleanarchitecturesample.ui.presenter
 
-import com.cleanarchitecturesample.mappers.PresentationMapper
+import com.cleanarchitecturesample.mappers.PresentationMapperImpl
 import com.cleanarchitecturesample.ui.view.MainView
 import com.domain.featurelocation.Interator
-import com.domain.featurelocation.models.Location
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
-import org.jetbrains.anko.coroutines.experimental.bg
+import kotlinx.coroutines.*
 
 
 class MainPresenter(private var view: MainView?,
-                    private val mapper: PresentationMapper<Location, com.cleanarchitecturesample.models.Location>,
+                    private val mapper: PresentationMapperImpl,
                     private val interator: Interator) {
 
-    fun onCreate() = launch(UI) {
-        val locations = bg { interator.getLocations() }.await()
-        view?.showLocations(mapper.transform(locations))
+    private val job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val ioScope = CoroutineScope(Dispatchers.IO + job)
+
+    fun onCreate() {
+        getLocations()
     }
 
-    fun newLocationClicked() = launch(UI) {
-        val locations = bg { interator.requestNewLocation() }.await()
-        view?.showLocations(mapper.transform(locations))
+    fun newLocationClicked() {
+        requestLocation()
+    }
+
+    private fun getLocations() {
+        uiScope.launch {
+            //view.showLoading() // ui thread
+            val task = async(ioScope.coroutineContext) {
+                // background thread
+                interator.getLocations()
+            }
+            view?.showLocations(mapper.transform(task.await()))// ui thread
+        }
+    }
+
+    private fun requestLocation() {
+        uiScope.launch {
+            //view.showLoading() // ui thread
+            val task = async(ioScope.coroutineContext) {
+                // background thread
+                interator.requestNewLocation()
+            }
+            view?.showLocations(mapper.transform(task.await()))// ui thread
+        }
     }
 
     fun onDestroy() {
+        job.cancel()
         view = null
     }
 }
