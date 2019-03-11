@@ -6,15 +6,16 @@ import com.domain.featurelocation.Interator
 import kotlinx.coroutines.*
 
 
-class MainPresenter(private var view: MainView?,
-                    private val mapper: PresentationMapperImpl,
+class MainPresenter(private val mapper: PresentationMapperImpl,
                     private val interator: Interator) {
 
+    private var view: MainView? = null
     private val job = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val mainScope = CoroutineScope(Dispatchers.Main + job)
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
 
-    fun onCreate() {
+    fun onCreate(view: MainView?) {
+        this.view = view
         getLocations()
     }
 
@@ -23,7 +24,7 @@ class MainPresenter(private var view: MainView?,
     }
 
     private fun getLocations() {
-        uiScope.launch {
+        mainScope.launch {
             //view.showLoading() // ui thread
             val task = async(ioScope.coroutineContext) {
                 // background thread
@@ -34,7 +35,7 @@ class MainPresenter(private var view: MainView?,
     }
 
     private fun requestLocation() {
-        uiScope.launch {
+        mainScope.launch {
             //view.showLoading() // ui thread
             val task = async(ioScope.coroutineContext) {
                 // background thread
