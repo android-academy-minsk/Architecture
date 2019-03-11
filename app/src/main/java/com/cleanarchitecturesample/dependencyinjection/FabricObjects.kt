@@ -1,9 +1,9 @@
 package com.cleanarchitecturesample.dependencyinjection
 
-import com.data.datasource.DeviceLocationSource
-import com.data.datasource.LocationPersistenceSource
-import com.domain.featurelocation.Interator
-import com.domain.featurelocation.repository.LocationsRepository
+import com.cleanarchitecturesample.domain.CoroutineDispatcherProvider
+import com.cleanarchitecturesample.domain.datasource.DeviceLocationSource
+import com.cleanarchitecturesample.domain.datasource.LocationPersistenceSource
+import com.cleanarchitecturesample.domain.repository.LocationsRepository
 
 interface FabricObjects {
 
@@ -13,6 +13,5 @@ interface FabricObjects {
 
    fun locationsRepository(): LocationsRepository
 
-   fun interactor(): Interator
-
+   fun coroutineDispatcherProvider(): CoroutineDispatcherProvider
 }

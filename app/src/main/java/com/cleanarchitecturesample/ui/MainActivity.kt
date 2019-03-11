@@ -5,31 +5,24 @@ import android.support.v7.app.AppCompatActivity
 import com.cleanarchitecturesample.R
 import com.cleanarchitecturesample.dependencyinjection.FabricObjects
 import com.cleanarchitecturesample.dependencyinjection.FabricObjectsImpl
-import com.cleanarchitecturesample.mappers.PresentationMapperImpl
-import com.cleanarchitecturesample.models.LocationModel
-import com.cleanarchitecturesample.ui.presenter.MainPresenter
-import com.cleanarchitecturesample.ui.view.MainView
+import com.cleanarchitecturesample.ui.models.LocationModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(), MainContract.View {
 
-
-    private val presenter: MainPresenter
+    private lateinit var presenter: MainPresenter
     private val locationsAdapter = LocationsAdapter()
     private val fabric: FabricObjects = FabricObjectsImpl()
-    private val mapper = PresentationMapperImpl()
-
-
-    init {
-        // This would be done by a dependency injector in a complex App
-        presenter = MainPresenter(this, mapper, fabric.interactor())
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recycler.adapter = locationsAdapter
+
+        presenter = MainPresenter(this,
+                fabric.locationsRepository(),
+                fabric.coroutineDispatcherProvider())
 
         newLocationBtn.setOnClickListener { presenter.newLocationClicked() }
 

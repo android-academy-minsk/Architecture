@@ -1,23 +1,16 @@
 package com.cleanarchitecturesample.dependencyinjection
 
-import com.cleanarchitecturesample.framework.FakeLocationSource
-import com.cleanarchitecturesample.framework.InMemoryLocationPersistenceSource
-import com.data.datasource.DeviceLocationSource
-import com.data.datasource.LocationPersistenceSource
-import com.data.featurelocation.LocationsRepositoryImpl
-import com.domain.featurelocation.InteractorImpl
-import com.domain.featurelocation.Interator
-import com.domain.featurelocation.repository.LocationsRepository
-import com.domain.featurelocation.usecases.GetLocationsUseCase
-import com.domain.featurelocation.usecases.RequestNewLocationUseCase
+import com.cleanarchitecturesample.domain.CoroutineDispatcherProvider
+import com.cleanarchitecturesample.domain.framework.FakeLocationSource
+import com.cleanarchitecturesample.domain.framework.InMemoryLocationPersistenceSource
+import com.cleanarchitecturesample.domain.datasource.DeviceLocationSource
+import com.cleanarchitecturesample.domain.datasource.LocationPersistenceSource
+import com.cleanarchitecturesample.domain.repository.LocationsRepositoryImpl
+import com.cleanarchitecturesample.domain.repository.LocationsRepository
 
 class FabricObjectsImpl : FabricObjects {
 
     private val locationsRepository: LocationsRepository = LocationsRepositoryImpl(inMemoryLocationPersistenceSource(), fakeLocationSource())
-
-    override fun interactor(): Interator {
-        return InteractorImpl(GetLocationsUseCase(locationsRepository), RequestNewLocationUseCase(locationsRepository))
-    }
 
     override fun inMemoryLocationPersistenceSource(): LocationPersistenceSource {
         return InMemoryLocationPersistenceSource()
@@ -29,5 +22,9 @@ class FabricObjectsImpl : FabricObjects {
 
     override fun locationsRepository(): LocationsRepository {
         return locationsRepository
+    }
+
+    override fun coroutineDispatcherProvider(): CoroutineDispatcherProvider {
+        return CoroutineDispatcherProvider()
     }
 }

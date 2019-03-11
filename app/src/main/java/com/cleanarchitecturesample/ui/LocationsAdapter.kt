@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.cleanarchitecturesample.R
-import com.cleanarchitecturesample.models.LocationModel
+import com.cleanarchitecturesample.ui.models.LocationModel
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_location_item.*
 import kotlin.properties.Delegates

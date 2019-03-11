@@ -4,7 +4,7 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.domain.featurelocation.models.Location
+import com.cleanarchitecturesample.domain.models.Location
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
