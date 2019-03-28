@@ -1,13 +1,13 @@
 package com.cleanarchitecturesample
 
 import android.app.Application
-import com.cleanarchitecturesample.dependencyinjection.FabricObjects
-import com.cleanarchitecturesample.dependencyinjection.FabricObjectsImpl
+import com.cleanarchitecturesample.dependencyinjection.FactoryObjects
+import com.cleanarchitecturesample.dependencyinjection.FactoryObjectsImpl
 
 class App : Application() {
 
-    private val fabricObjects: FabricObjects = FabricObjectsImpl()
+    private val factoryObjects: FactoryObjects = FactoryObjectsImpl()
 
 
-    fun getFabric() = fabricObjects
+    fun getFactory() = factoryObjects
 }

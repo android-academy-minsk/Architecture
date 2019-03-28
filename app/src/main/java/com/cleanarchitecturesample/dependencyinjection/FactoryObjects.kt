@@ -6,7 +6,7 @@ import com.data.datasource.DeviceLocationSource
 import com.data.datasource.LocationPersistenceSource
 import com.domain.featurelocation.repository.LocationsRepository
 
-interface FabricObjects {
+interface FactoryObjects {
 
    fun inMemoryLocationPersistenceSource(): LocationPersistenceSource
 

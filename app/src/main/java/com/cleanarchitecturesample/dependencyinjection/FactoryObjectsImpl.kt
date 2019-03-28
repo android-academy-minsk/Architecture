@@ -14,7 +14,7 @@ import com.domain.featurelocation.repository.LocationsRepository
 import com.domain.featurelocation.usecases.GetLocationsUseCase
 import com.domain.featurelocation.usecases.RequestNewLocationUseCase
 
-class FabricObjectsImpl : FabricObjects {
+class FactoryObjectsImpl : FactoryObjects {
 
     private val locationsRepository: LocationsRepository by lazy { LocationsRepositoryImpl(inMemoryLocationPersistenceSource(), fakeLocationSource()) }
     private val locationsAdapter by lazy { LocationsAdapter() }

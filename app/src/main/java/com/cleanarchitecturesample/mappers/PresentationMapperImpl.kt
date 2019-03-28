@@ -2,7 +2,7 @@ package com.cleanarchitecturesample.mappers
 
 import com.cleanarchitecturesample.models.LocationModel
 import com.cleanarchitecturesample.ui.toPrettifiedString
-import com.domain.featurelocation.models.Location
+import com.domain.featurelocation.entities.Location
 
 class PresentationMapperImpl : PresentationMapper<Location, LocationModel> {
 

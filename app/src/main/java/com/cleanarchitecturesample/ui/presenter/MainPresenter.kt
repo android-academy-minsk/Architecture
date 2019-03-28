@@ -28,7 +28,7 @@ class MainPresenter(private val mapper: PresentationMapperImpl,
             //view.showLoading() // ui thread
             val task = async(ioScope.coroutineContext) {
                 // background thread
-                interator.getLocations()
+                interator.getNewLocations()
             }
             view?.showLocations(mapper.transform(task.await()))// ui thread
         }

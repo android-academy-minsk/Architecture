@@ -1,8 +1,13 @@
 package com.cleanarchitecturesample.framework
 
 import com.data.datasource.LocationPersistenceSource
-import com.domain.featurelocation.models.Location
+import com.domain.featurelocation.entities.Location
 
+/**
+*
+* Not synchronized storage
+*
+* */
 class InMemoryLocationPersistenceSource : LocationPersistenceSource {
 
     private var locations: List<Location> = emptyList()
@@ -11,5 +16,9 @@ class InMemoryLocationPersistenceSource : LocationPersistenceSource {
 
     override fun saveNewLocation(location: Location) {
         locations = locations + location
+    }
+
+    override fun saveNewLocations(newLocations: List<Location>) {
+        locations = locations + newLocations
     }
 }

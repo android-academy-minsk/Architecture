@@ -1,4 +1,4 @@
-package com.domain.featurelocation.models
+package com.domain.featurelocation.entities
 
 import java.util.*
 
