@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MVP Sample</string>
+    <string name="app_name">MVI Sample</string>
     <string name="request_new_location">Request new location</string>
 </resources>
