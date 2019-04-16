@@ -12,7 +12,10 @@ Useful links for inspiration:
   - [Managing State with RxJava by Jake Wharton](https://www.youtube.com/watch?v=0IKHxjkgop4)
 
 - Articles
-  - TBD
+  - [MVI beyond state reducers - series of articles on Android architecture in Badoo](https://badootech.badoo.com/a-modern-kotlin-based-mvi-architecture-9924e08efab1)
+  - [MVI — another member of the MV* band](https://proandroiddev.com/mvi-a-new-member-of-the-mv-band-6f7f0d23bc8a)
+  - [MVI Pattern in Android without RxJava](https://proandroiddev.com/android-unidirectional-state-flow-without-rx-596f2f7637bb)
+  - [MVIDroid: обзор новой библиотеки MVI (Model-View-Intent)](https://habr.com/ru/post/417763/)
 
 - Open source repos
   - [AirBnb - MvRx](https://github.com/airbnb/MvRx)
@@ -20,3 +23,4 @@ Useful links for inspiration:
   - [Badoo - MVICore](https://github.com/badoo/MVICore)
   - [Freeletics - RxRedux](https://github.com/freeletics/RxRedux)
   - [MVI with Coroutines example](https://github.com/brewin/mvi-coroutines)
+  - [KUnidirectional](https://github.com/CesarValiente/KUnidirectional)
